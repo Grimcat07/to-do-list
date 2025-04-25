@@ -1,40 +1,35 @@
-import {ToDo} from "./CreateToDo.js"
+import { ToDo } from "./CreateToDo.js";
+class manageToDo {
+  constructor() {
+    this.todos = [];
+  }
+  createToDo(project, id, title, desc, due, priority, notes, check) {
+    let todo = new ToDo(project, id, title, desc, due, priority, notes, check);
+    this.todos.push(todo);
+  }
 
-const manageToDo=function()
-{
-    const todos=[] 
-    let createToDo=function (project,id,title,desc,due,priority,notes,check){
-    
-    let todo=new ToDo(project,id,title,desc,due,priority,notes,check)
-    todos.push(todo);
-    return todos;
+  deleteToDo(id) {
+    let index = this.findIndex(id);
+    if (index === -1 || index === null || index === undefined) {
+      return;
     }
-   let  findIndex=function (id){
-        let index=todos.findIndex(todo=>todo.id===id);
-        return index;
-    }
-   let deleteToDo=function (id){
-        let index=findIndex(id);
-        if(index===-1||index===null||index===undefined){return}
-        todos.splice(index,1);
-        displayToDo()
-    }
+    this.todos.splice(index, 1);
+    this.displayToDo();
+  }
+  findIndex(id) {
+    let index = this.todos.findIndex((todo) => todo.id === id);
+    return index;
+  }
 
-   let toggleToDo=function(id){
-        let index=findIndex(id);
-        todos[index].check= !todos[index].check;
-        displayToDo()
-    }
+  toggleToDo(id) {
+    let index = this.findIndex(id);
+    this.todos[index].check = !this.todos[index].check;
+    this.displayToDo();
+  }
 
-   let displayToDo=function(){
-        console.log(todos);
-    }
-
-    return {
-        createToDo,
-        deleteToDo,
-        toggleToDo,
-        displayToDo,
-    }
+  displayToDo() {
+    console.log(this.todos);
+  }
 }
-export {manageToDo}
+
+export { manageToDo };
