@@ -1,5 +1,5 @@
 import "./styles.css";
-import { manageToDo } from "./ManageToDo.js";
+import { ManageProjects } from "./ManageProject.js";
 
-const todoManager = new manageToDo();
-console.log(todoManager);
+window.manage=new ManageProjects();
+console.log(manage)
