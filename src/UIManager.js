@@ -47,6 +47,7 @@ class UIManager {
     const submitTodo = document.querySelector(".submitTodo");
     const viewprojButton = document.querySelector(".viewproj");
     const viewprojdialog = document.querySelector("#view");
+    const resetAll = document.querySelector(".reset");
 
     addTodoButton.addEventListener("click", () => {
       this.addtododialog(formDialog, close, submitTodo);
@@ -56,6 +57,10 @@ class UIManager {
     });
     viewprojButton.addEventListener("click", () => {
       this.viewprojects(viewprojdialog, close);
+    });
+    resetAll.addEventListener("click", () => {
+      this.projectManager.reset();
+      location.reload();
     });
   }
   addtododialog(formDialog, close, submit) {
