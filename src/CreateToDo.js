@@ -1,7 +1,5 @@
 class ToDo {
   constructor(
-    project,
-    id,
     title,
     desc = "",
     due = "forever",
@@ -9,8 +7,7 @@ class ToDo {
     notes = "",
     check = false,
   ) {
-    this.project = project;
-    this.id = id;
+    this.id = crypto.randomUUID();
     this.title = title;
     this.desc = desc;
     this.due = due;

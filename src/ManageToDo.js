@@ -3,14 +3,14 @@ class manageToDo {
   constructor() {
     this.todos = [];
   }
-  createToDo(project, id, title, desc, due, priority, notes, check) {
-    let todo = new ToDo(project, id, title, desc, due, priority, notes, check);
+  createToDo(title, desc, due, priority, notes, check) {
+    let todo = new ToDo(title, desc, due, priority, notes, check);
     this.todos.push(todo);
   }
 
   deleteToDo(id) {
     let index = this.findIndex(id);
-    if (index === -1 || index === null || index === undefined) {
+    if (index === -1) {
       return;
     }
     this.todos.splice(index, 1);
@@ -26,7 +26,9 @@ class manageToDo {
     this.todos[index].check = !this.todos[index].check;
     this.displayToDo();
   }
-
+  getToDo() {
+    return this.todos;
+  }
   displayToDo() {
     console.log(this.todos);
   }
