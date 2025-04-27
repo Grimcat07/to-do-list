@@ -153,12 +153,12 @@ body {
     right: -12px;
     width: fit-content;
     background-color: rgba(0, 0, 0, 0);
-    color: black;
+    color: white;
     border: 0px;
   }
   .dialog_close:hover {
     background-color: #000000;
-    color: white;
+    color: #00ffe0;
   }
   .submit {
     left: 50%;
@@ -179,7 +179,7 @@ body {
     right: -12px;
     width: fit-content;
     background-color: rgba(0, 0, 0, 0);
-    color: black;
+    color: #00ffe0;
     border: 0px;
     border-radius: 45%;
   }
@@ -214,13 +214,13 @@ body {
   display: flex;
   justify-content: end;
 }
-.delButton {
+.delButton,.editButton {
   background-color: #222;
   border-style: none;
   color: #e0e0e0;
   border-radius: 8px;
 }
-.delButton:hover {
+.delButton:hover,.editButton:hover {
   transform: translate(1.01);
   background-color: #00ffe0;
   color: #000000;
@@ -252,4 +252,16 @@ body {
     align-items: center;
     display: inline-flex;
   }
+}
+.delDiv 
+{
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+dialog
+{
+  background-color: #000000;
+  color: #e0e0e0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

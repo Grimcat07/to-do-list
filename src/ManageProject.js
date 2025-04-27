@@ -67,6 +67,19 @@ class ManageProjects {
   getProjects() {
     return this.projects;
   }
+  updateTodo(projId, todoId, title, desc, due, priority, notes, check) {
+  const index = this.findProjIndex(projId);
+  const todo = this.projects[index].todoManager.todos.find(t => t.id === todoId);
+  if (todo) {
+    todo.title = title;
+    todo.desc = desc;
+    todo.due = due;
+    todo.priority = priority;
+    todo.notes = notes;
+    todo.check = check;
+  }
+}
+
 
   findProjIndex(id) {
     return this.projects.findIndex((proj) => proj.id === id);
