@@ -4,9 +4,8 @@ class UIManager {
   constructor() {
     this.projectManager = new ManageProjects();
     this.isEditMode = false;
-this.editProjId = null;
-this.editTodoId = null;
-
+    this.editProjId = null;
+    this.editTodoId = null;
   }
   createProject(name) {
     this.projectManager.createProject(name);
@@ -67,25 +66,30 @@ this.editTodoId = null;
       location.reload();
     });
   }
-  addtododialog(formDialog, close, submit,) {
+  addtododialog(formDialog, close, submit) {
     if (this.isEditMode) {
-    const projectSelect = document.querySelector("#project_name");
-  const proj = this.projectManager.projects.find(p => p.id === this.editProjId);
-  const todo = proj.todoManager.todos.find(t => t.id === this.editTodoId);
+      const projectSelect = document.querySelector("#project_name");
+      const proj = this.projectManager.projects.find(
+        (p) => p.id === this.editProjId,
+      );
+      const todo = proj.todoManager.todos.find((t) => t.id === this.editTodoId);
 
-  document.querySelector("#todo_title").value = todo.title;
-  document.querySelector("#todo_desc").value = todo.desc;
-  document.querySelector("#todo_notes").value = todo.notes;
-  document.querySelector("#due_date").value = todo.due;
-  document.querySelector("#todo_check").checked = todo.check;
+      document.querySelector("#todo_title").value = todo.title;
+      document.querySelector("#todo_desc").value = todo.desc;
+      document.querySelector("#todo_notes").value = todo.notes;
+      document.querySelector("#due_date").value = todo.due;
+      document.querySelector("#todo_check").checked = todo.check;
 
-  if (todo.priority === "high") document.querySelector("#high_priority").checked = true;
-  if (todo.priority === "meh") document.querySelector("#meh_priority").checked = true;
-  if (todo.priority === "low") document.querySelector("#low_priority").checked = true;
+      if (todo.priority === "high")
+        document.querySelector("#high_priority").checked = true;
+      if (todo.priority === "meh")
+        document.querySelector("#meh_priority").checked = true;
+      if (todo.priority === "low")
+        document.querySelector("#low_priority").checked = true;
 
-  projectSelect.value = proj.name;
-  projectSelect.disabled = true;
-}
+      projectSelect.value = proj.name;
+      projectSelect.disabled = true;
+    }
 
     const projectSelect = document.querySelector("#project_name");
     const projarr = this.projectManager.getProjects();
@@ -132,53 +136,53 @@ this.editTodoId = null;
 
       if (title && priority && due) {
         if (title && priority && due) {
-  if (this.isEditMode) {
-    this.projectManager.updateTodo(
-      this.editProjId,
-      this.editTodoId,
-      title,
-      description,
-      due,
-      priority,
-      notes,
-      isChecked
-    );
-    const projIndex = this.projectManager.findProjIndex(this.editProjId);
-    this.render(this.projectManager.projects[projIndex]);
+          if (this.isEditMode) {
+            this.projectManager.updateTodo(
+              this.editProjId,
+              this.editTodoId,
+              title,
+              description,
+              due,
+              priority,
+              notes,
+              isChecked,
+            );
+            const projIndex = this.projectManager.findProjIndex(
+              this.editProjId,
+            );
+            this.render(this.projectManager.projects[projIndex]);
+          }
+          formDialog.close();
 
-  } 
-  formDialog.close();
+          todoTitle.value = "";
+          todoDesc.value = "";
+          todoNotes.value = "";
+          todoCheck.checked = false;
+          document.querySelector(".priority").checked = false;
+          this.isEditMode = false;
+          this.editProjId = null;
+          this.editTodoId = null;
+          projectSelect.disabled = false;
+        } else {
+          this.createTodo(
+            projName,
+            title,
+            description,
+            due,
+            priority,
+            notes,
+            isChecked,
+          );
+          formDialog.close();
 
-  todoTitle.value = "";
-  todoDesc.value = "";
-  todoNotes.value = "";
-  todoCheck.checked = false;
-  document.querySelector(".priority").checked = false;
-  this.isEditMode = false;
-  this.editProjId = null;
-  this.editTodoId = null;
-  projectSelect.disabled = false;
-}
-else{
-        this.createTodo(
-          projName,
-          title,
-          description,
-          due,
-          priority,
-          notes,
-          isChecked,
-        );
-        formDialog.close();
-
-        todoTitle.value = "";
-        todoDesc.value = "";
-        todoNotes.value = "";
-        todoCheck.checked = false;
-        document.querySelector(".priority").checked = false;
+          todoTitle.value = "";
+          todoDesc.value = "";
+          todoNotes.value = "";
+          todoCheck.checked = false;
+          document.querySelector(".priority").checked = false;
+        }
       }
-    }});
-
+    });
   }
 
   addprojectdialog(projDialog, close, submit) {
@@ -282,19 +286,18 @@ else{
         this.render(proj);
       });
       const editBtn = document.createElement("button");
-editBtn.classList.add("editButton")
-editBtn.textContent = "Edit";
-editBtn.addEventListener("click", () => {
-    const formDialog=document.querySelector("#todo_dialog")
-     const close = document.querySelector(".dialog_close");
-     const submitTodo = document.querySelector(".submitTodo");
-  this.isEditMode = true;
-  this.editProjId = projid;
-  this.editTodoId = todo.id;
-  this.addtododialog(formDialog, close, submitTodo); 
-  
-});
-      delDiv.appendChild(editBtn)
+      editBtn.classList.add("editButton");
+      editBtn.textContent = "Edit";
+      editBtn.addEventListener("click", () => {
+        const formDialog = document.querySelector("#todo_dialog");
+        const close = document.querySelector(".dialog_close");
+        const submitTodo = document.querySelector(".submitTodo");
+        this.isEditMode = true;
+        this.editProjId = projid;
+        this.editTodoId = todo.id;
+        this.addtododialog(formDialog, close, submitTodo);
+      });
+      delDiv.appendChild(editBtn);
       delDiv.appendChild(del);
       statusEl.appendChild(statusCheckbox);
       todoDiv.appendChild(titleEl);

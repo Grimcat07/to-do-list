@@ -214,13 +214,15 @@ body {
   display: flex;
   justify-content: end;
 }
-.delButton,.editButton {
+.delButton,
+.editButton {
   background-color: #222;
   border-style: none;
   color: #e0e0e0;
   border-radius: 8px;
 }
-.delButton:hover,.editButton:hover {
+.delButton:hover,
+.editButton:hover {
   transform: translate(1.01);
   background-color: #00ffe0;
   color: #000000;
@@ -253,14 +255,12 @@ body {
     display: inline-flex;
   }
 }
-.delDiv 
-{
+.delDiv {
   display: flex;
   gap: 10px;
   justify-content: end;
 }
-dialog
-{
+dialog {
   background-color: #000000;
   color: #e0e0e0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
