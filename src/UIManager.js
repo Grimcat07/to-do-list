@@ -1,3 +1,4 @@
+import { de } from "date-fns/locale";
 import { ManageProjects } from "./ManageProject";
 
 class UIManager {
@@ -131,10 +132,10 @@ class UIManager {
             ? "low"
             : "";
       const due = dueDate.value;
-      const description = todoDesc.value;
+      let description = todoDesc.value;
       const isChecked = todoCheck.checked;
-      const notes = todoNotes.value;
-      const projName = projectSelect.value;
+      let notes = todoNotes.value;
+      let projName = projectSelect.value;
 
         if (title && priority && due) {
           if (this.isEditMode) {
@@ -159,7 +160,9 @@ class UIManager {
           todoDesc.value = "";
           todoNotes.value = "";
           todoCheck.checked = false;
-          document.querySelector(".priority").checked = false;
+          const priorityArr=document.querySelectorAll(".priority")
+          let priorArr=Array.from(priorityArr)
+          priorArr.forEach(prior=>prior.checked=false);
           this.isEditMode = false;
           this.editProjId = null;
           this.editTodoId = null;
@@ -167,7 +170,9 @@ class UIManager {
           dueDate.value=""
         }
          else {
-          console.log("before create")
+          projName=projName? projName : "Default"
+          description=description? description : "No Desc"
+          notes=notes? notes : "No Notes"
           this.createTodo(
             projName,
             title,
@@ -186,10 +191,12 @@ class UIManager {
           todoDesc.value = "";
           todoNotes.value = "";
           todoCheck.checked = false;
-          document.querySelector(".priority").checked = false;
+          const priorityArr=document.querySelectorAll(".priority")
+          let priorArr=Array.from(priorityArr)
+          priorArr.forEach(prior=>prior.checked=false);
           dueDate.value="";
-        }
-        }
+        }}
+        
     });
   }
 
@@ -250,7 +257,7 @@ class UIManager {
     let todosarr = proj.getTodo();
     let projid = proj.id;
     const projNameHeader=document.querySelector(".projectNameHeader")
-    projNameHeader.textContent=`${proj.name} Project`
+    projNameHeader.textContent=`Project : ${proj.name}`
     const delProjButton=document.createElement("button")
     delProjButton.classList.add("delProjButton")
     delProjButton.textContent="Delete Project"
@@ -292,7 +299,11 @@ class UIManager {
       statusCheckbox.addEventListener("change", () => {
         this.projectManager.toggleTodo(projid, todo.id);
         statusEl.textContent = `Finished: ${todo.check ? "Yes" : "No"}`;
+        if(todo.check){
+        todoDiv.setAttribute("data-check","yes")}
       });
+      if(todo.check){
+        todoDiv.setAttribute("data-check","yes")}
       const delDiv = document.createElement("div");
       delDiv.classList.add("delDiv");
       const del = document.createElement("button");

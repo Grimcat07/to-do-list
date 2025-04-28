@@ -292,3 +292,21 @@ dialog {
   background-color: #00ffe0;
   color: #000000;
 }
+.todo[data-check="yes"]
+{
+  text-decoration: line-through;
+  color: #252121;
+  button 
+  {
+    color: #252121;
+    background-color: #333;
+  }
+  
+}
+.todo[data-check="yes"]{
+button:hover 
+  {
+    background-color: #00ffe0;
+    color: #000000;
+  }
+}
