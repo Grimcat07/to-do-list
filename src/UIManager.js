@@ -243,7 +243,14 @@ class UIManager {
     let projid = proj.id;
     const projNameHeader=document.querySelector(".projectNameHeader")
     projNameHeader.textContent=`${proj.name} Project`
-
+    const delProjButton=document.createElement("button")
+    delProjButton.classList.add("delProjButton")
+    delProjButton.textContent="Delete Project"
+    delProjButton.addEventListener("click",()=>{
+      this.deleteProject(projid)
+      location.reload();
+    })
+    projNameHeader.appendChild(delProjButton)
     todosarr.forEach((todo) => {
       const todoDiv = document.createElement("div");
       todoDiv.classList.add("todo");

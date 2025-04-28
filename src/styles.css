@@ -268,8 +268,27 @@ dialog {
 .projectNameHeader
 {
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 .titleWrapper
 {
   text-align: center;
+}
+.delProjButton
+{
+  font-size: small;
+  background-color: #222;
+  width: fit-content;
+  height: 1.5rem;
+  margin-left: 14px;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-weight: normal;
+}
+.delProjButton:hover{
+  transform: scale(1.01);
+  background-color: #00ffe0;
+  color: #000000;
 }
