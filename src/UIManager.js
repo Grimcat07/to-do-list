@@ -7,18 +7,19 @@ class UIManager {
     this.editProjId = null;
     this.editTodoId = null;
   }
-  createProject(name) {
-    this.projectManager.createProject(name);
-    console.log("came to uimanager");
-  }
-  createTodo(projName, title, desc, due, priority, notes, check) {
+  createProject(name) { 
     const existingProject = this.projectManager
       .getProjects()
-      .find((proj) => proj.name === projName);
+      .find((proj) => proj.name === name);
     if (existingProject) {
       console.log("Project with this name already exists");
       return;
     }
+    this.projectManager.createProject(name);
+    console.log("came to uimanager");
+  }
+  createTodo(projName, title, desc, due, priority, notes, check) {
+   
     let projarr = this.projectManager.getProjects();
     let projIndex = projarr.findIndex((proj) => proj.name == projName);
     this.projectManager.addTodo(
@@ -72,6 +73,7 @@ class UIManager {
       const proj = this.projectManager.projects.find(
         (p) => p.id === this.editProjId,
       );
+      
       const todo = proj.todoManager.todos.find((t) => t.id === this.editTodoId);
 
       document.querySelector("#todo_title").value = todo.title;
@@ -134,7 +136,6 @@ class UIManager {
       const notes = todoNotes.value;
       const projName = projectSelect.value;
 
-      if (title && priority && due) {
         if (title && priority && due) {
           if (this.isEditMode) {
             this.projectManager.updateTodo(
@@ -151,7 +152,7 @@ class UIManager {
               this.editProjId,
             );
             this.render(this.projectManager.projects[projIndex]);
-          }
+          
           formDialog.close();
 
           todoTitle.value = "";
@@ -163,7 +164,10 @@ class UIManager {
           this.editProjId = null;
           this.editTodoId = null;
           projectSelect.disabled = false;
-        } else {
+          dueDate.value=""
+        }
+         else {
+          console.log("before create")
           this.createTodo(
             projName,
             title,
@@ -173,6 +177,9 @@ class UIManager {
             notes,
             isChecked,
           );
+          let indexProj=projarr.findIndex(proj=>proj.name==projName)
+          console.log(this.projectManager.projects[indexProj])
+          this.render(this.projectManager.projects[indexProj]);
           formDialog.close();
 
           todoTitle.value = "";
@@ -180,8 +187,9 @@ class UIManager {
           todoNotes.value = "";
           todoCheck.checked = false;
           document.querySelector(".priority").checked = false;
+          dueDate.value="";
         }
-      }
+        }
     });
   }
 
