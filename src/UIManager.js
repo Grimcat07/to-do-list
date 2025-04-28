@@ -241,6 +241,8 @@ class UIManager {
 
     let todosarr = proj.getTodo();
     let projid = proj.id;
+    const projNameHeader=document.querySelector(".projectNameHeader")
+    projNameHeader.textContent=`${proj.name} Project`
 
     todosarr.forEach((todo) => {
       const todoDiv = document.createElement("div");

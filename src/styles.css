@@ -265,3 +265,11 @@ dialog {
   color: #e0e0e0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.projectNameHeader
+{
+  text-align: center;
+}
+.titleWrapper
+{
+  text-align: center;
+}
